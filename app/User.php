@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(FingerprintRequest::class);
     }
+
+    public function signLogs()
+    {
+        return $this->hasMany(SignLog::class);
+    }
 }
