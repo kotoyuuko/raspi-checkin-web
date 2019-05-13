@@ -9,4 +9,9 @@ class Client extends Model
     protected $fillable = [
         'name', 'ip', 'port', 'token',
     ];
+
+    public function requests()
+    {
+        return $this->hasMany(FingerprintRequest::class);
+    }
 }

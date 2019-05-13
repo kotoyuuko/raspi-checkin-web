@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function fingerprintRequests()
     {
-        return $this->hasMany('App\FingerprintRequest');
+        return $this->hasMany(FingerprintRequest::class);
     }
 }
