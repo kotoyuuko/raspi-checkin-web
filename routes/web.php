@@ -6,3 +6,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('home', 'PagesController@home')->name('pages.home');
 });
+
+Route::middleware(['auth', 'manager'])->group(function () {
+    Route::resource('users', 'UsersController');
+});
