@@ -14,4 +14,9 @@ class Client extends Model
     {
         return $this->hasMany(FingerprintRequest::class);
     }
+
+    public static function findByToken($token)
+    {
+        return self::where('token', $token)->first();
+    }
 }
