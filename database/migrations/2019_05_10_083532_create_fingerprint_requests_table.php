@@ -16,7 +16,7 @@ class CreateFingerprintRequestsTable extends Migration
         Schema::create('fingerprint_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->string('fingerprint');
+            $table->string('fingerprint')->nullable();
             $table->enum('status', ['waiting', 'available',  'discarded']);
             $table->timestamps();
         });

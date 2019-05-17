@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('ip');
             $table->integer('port')->unsigned();
-            $table->string('token');
+            $table->string('token')->unique();
             $table->timestamps();
         });
     }
