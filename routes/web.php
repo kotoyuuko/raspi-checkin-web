@@ -9,4 +9,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'manager'])->group(function () {
     Route::resource('users', 'UsersController')->except(['show', 'create', 'store']);
+    Route::resource('clients', 'ClientsController')->except(['show', 'destory']);
 });
