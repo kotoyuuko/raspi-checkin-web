@@ -14,7 +14,9 @@ class AddClientToFingrprintRequests extends Migration
     public function up()
     {
         Schema::table('fingerprint_requests', function (Blueprint $table) {
-            $table->bigInteger('client_id');
+            $table->bigInteger('client_id')->unsigned();
+
+            $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 
@@ -27,6 +29,8 @@ class AddClientToFingrprintRequests extends Migration
     {
         Schema::table('fingerprint_requests', function (Blueprint $table) {
             $table->dropColumn('client_id');
+
+            $table->dropForeign('fingerprint_requests_client_id_foreign');
         });
     }
 }
