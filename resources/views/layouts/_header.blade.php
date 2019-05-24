@@ -12,6 +12,10 @@
             <ul class="navbar-nav mr-auto">
                 @auth
                 <li class="nav-item"><a class="nav-link" href="{{ route('pages.home') }}">首页</a></li>
+
+                @if (Auth::user()->role == 'manager')
+                <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">用户</a></li>
+                @endif
                 @endauth
             </ul>
 
