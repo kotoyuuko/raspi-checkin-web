@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
     <div class="container">
-        <a class="navbar-brand " href="{{ url('/') }}">
+        <a class="navbar-brand " href="{{ route('pages.root') }}">
             Check-In
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -10,7 +10,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
+                @auth
+                <li class="nav-item"><a class="nav-link" href="{{ route('pages.home') }}">首页</a></li>
+                @endauth
             </ul>
 
             <ul class="navbar-nav navbar-right">
