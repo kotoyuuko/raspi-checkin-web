@@ -44,6 +44,15 @@ class FingerprintsController extends Controller
         $req->status = 'waiting';
         $req->save();
 
+        send_fingerprint_request($req->client->ip, $req->client->port, $req->id);
+
+        return redirect()->route('fingerprints.index');
+    }
+
+    public function resend(FingerprintRequest $req)
+    {
+        send_fingerprint_request($req->client->ip, $req->client->port, $req->id);
+
         return redirect()->route('fingerprints.index');
     }
 }

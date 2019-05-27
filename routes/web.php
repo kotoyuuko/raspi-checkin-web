@@ -13,5 +13,6 @@ Route::middleware(['auth', 'manager'])->group(function () {
     Route::post('users/{user}/fingerprint', 'FingerprintsController@saveUser');
     Route::resource('clients', 'ClientsController')->except(['show', 'destory']);
     Route::resource('fingerprints', 'FingerprintsController')->only(['index', 'destroy']);
+    Route::get('fingerprints/{fingerprint}/resend', 'FingerprintsController@resend')->name('fingerprints.resend');
     Route::resource('logs', 'LogsController')->only(['index']);
 });
