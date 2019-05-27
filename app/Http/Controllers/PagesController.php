@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SignLog;
 use Auth;
 
 class PagesController extends Controller
@@ -18,6 +19,9 @@ class PagesController extends Controller
 
     public function home()
     {
-        return view('pages.home');
+        $user = Auth::user();
+        $logs = SignLog::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
+
+        return view('pages.home', compact('user', 'logs'));
     }
 }
