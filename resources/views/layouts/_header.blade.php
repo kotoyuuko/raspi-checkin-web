@@ -17,6 +17,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('clients.index') }}">终端</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">用户</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('fingerprints.index') }}">指纹</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('logs.index') }}">记录</a></li>
                 @endif
                 @endauth
             </ul>
