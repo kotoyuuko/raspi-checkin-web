@@ -26,6 +26,7 @@
             <td>{{ $user->mac ?? '未录入' }}</td>
             <td>{{ $user->role == 'manager' ? '管理员' : '用户' }}</td>
             <td>
+                <a class="btn btn-info btn-sm" href="{{ route('users.fingerprint', $user->id) }}">录入指纹</a>
                 <a class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">编辑</a>
             </td>
         </tr>

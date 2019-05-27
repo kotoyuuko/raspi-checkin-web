@@ -18,8 +18,8 @@
         @foreach($requests as $request)
         <tr>
             <th scope="row">{{ $request->id }}</th>
-            <td>{{ $request->user()->id }} - {{ $request->user()->name }}</td>
-            <td>{{ $request->client()->id }} - {{ $request->client()->name }}</td>
+            <td>{{ $request->user->id }} - {{ $request->user->name }}</td>
+            <td>{{ $request->client->id }} - {{ $request->client->name }}</td>
             <td>
                 @if ($request->status == 'waiting')
                 等待录入
@@ -30,7 +30,7 @@
                 @endif
             </td>
             <td>
-                <form action="{{ route('requests.destory', $request->id) }}" method="POST">
+                <form action="{{ route('fingerprints.destroy', $request->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button class="btn btn-danger btn-sm" type="submit">删除</button>

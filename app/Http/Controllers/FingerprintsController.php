@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\FingerprintRequest;
+use App\User;
+use App\Client;
 
 class FingerprintsController extends Controller
 {
@@ -13,9 +16,33 @@ class FingerprintsController extends Controller
         return view('fingerprints.index', compact('requests'));
     }
 
-    public function destory(FingerprintRequest $fingerprint)
+    public function destroy(FingerprintRequest $fingerprint)
     {
         $fingerprint->delete();
+
+        return redirect()->route('fingerprints.index');
+    }
+
+    public function editUser(User $user)
+    {
+        $clients = Client::all();
+
+        return view('fingerprints.user', compact('user', 'clients'));
+    }
+
+    public function saveUser(Request $request, User $user)
+    {
+        $client = intval($request->post('client', 0));
+        if ($client === 0) {
+            return redirect()->back();
+        }
+
+        $req = new FingerprintRequest;
+        $req->user_id = $user->id;
+        $req->client_id = $client;
+        $req->fingerprint = '0';
+        $req->status = 'waiting';
+        $req->save();
 
         return redirect()->route('fingerprints.index');
     }
