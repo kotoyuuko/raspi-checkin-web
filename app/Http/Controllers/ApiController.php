@@ -11,7 +11,7 @@ class ApiController extends Controller
 {
     public function listUsers()
     {
-        $users = User::paginate(20);
+        $users = User::paginate(200);
 
         $data = [];
         foreach ($users as $user) {
