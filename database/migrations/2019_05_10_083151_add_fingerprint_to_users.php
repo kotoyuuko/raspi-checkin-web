@@ -14,7 +14,7 @@ class AddFingerprintToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('fingerprint')->default('[]');
+            $table->json('fingerprint')->nullable();
         });
     }
 

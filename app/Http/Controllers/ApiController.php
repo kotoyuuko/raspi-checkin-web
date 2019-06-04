@@ -20,7 +20,7 @@ class ApiController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'role' => $user->role,
-                'fingerprint' => $user->fingerprint,
+                'fingerprint' => json_decode($user->fingerprint, true),
                 'mac' => $user->mac,
             ];
         }
@@ -51,7 +51,7 @@ class ApiController extends Controller
     public function saveFingerprint(Request $request)
     {
         $requestId = $request->request_id;
-        $fingerprint = $request->fingerprint;
+        $fingerprint = json_encode($request->fingerprint);
 
         $fingerprintRequest = FingerprintRequest::find($requestId);
 
@@ -75,6 +75,15 @@ class ApiController extends Controller
         $fingerprintRequest->fingerprint = $fingerprint;
         $fingerprintRequest->status = 'available';
         $fingerprintRequest->save();
+
+        $otherRequests = FingerprintRequest::where([
+            ['user_id', $fingerprintRequest->user_id],
+            ['status', 'waiting'],
+        ])->get();
+
+        foreach ($otherRequests as $req) {
+            $req->delete();
+        }
 
         $user = User::find($fingerprintRequest->user_id);
         $user->fingerprint = $fingerprint;
