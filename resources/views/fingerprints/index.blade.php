@@ -30,7 +30,7 @@
                 @endif
             </td>
             <td>
-                <a class="btn btn-info btn-sm" href="{{ route('fingerprints.resend') }}">重发请求</a>
+                <a class="btn btn-info btn-sm" href="{{ route('fingerprints.resend', $request->id) }}">重发请求</a>
                 <form action="{{ route('fingerprints.destroy', $request->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
